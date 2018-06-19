@@ -1,0 +1,16 @@
+2018-06-07 07:58	HEY! This is my log file...0
+2018-06-07 07:58	HEY! This is my log file...1
+2018-06-07 07:58	HEY! This is my log file...2
+2018-06-07 07:58	HEY! This is my log file...3
+2018-06-09 09:45	HEY! This is my log file...0
+2018-06-09 09:45	HEY! This is my log file...1
+2018-06-09 09:45	HEY! This is my log file...2
+2018-06-09 09:45	HEY! This is my log file...3
+2018-06-09 09:45	HEY! This is my log file...0
+2018-06-09 09:45	HEY! This is my log file...1
+2018-06-09 09:45	HEY! This is my log file...2
+2018-06-09 09:45	HEY! This is my log file...3
+2018-06-09 09:46	HEY! This is my log file...0
+2018-06-09 09:46	HEY! This is my log file...1
+2018-06-09 09:46	HEY! This is my log file...2
+2018-06-09 09:46	HEY! This is my log file...3
