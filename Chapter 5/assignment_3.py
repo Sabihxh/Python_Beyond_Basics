@@ -1,46 +1,41 @@
-import sys
 import os
-# from assignment_3 import ConfigDict
+import sys
+import pickle
 
-class ConfigDict(dict):
+class ConfigKeyError(Exception):
 	
-	def __init__(self, filepath):
+	def __init__(self, this, key):
+		self.key = key
+		self.keys = this.keys()
 
-		self._filepath = filepath
-		if os.path.exists(self._filepath):
-			with open(self._filepath) as f:
-				for line in f:
-					line = line.rstrip()
-					key, value = line.split('=', 1)
-					dict.__setitem__(self, key, value)
+	def __str__(self):
+		return "key '{0}' not found. Available keys ({1})".format(self.key, ', '.join(self.keys))
+
+
+class ConfigPickleDict(dict):
+
+	config_dir = '/Users/yuartcha/Desktop/config'
+
+	def __init__(self, config_name):
+		
+		self._config_path = os.path.join(ConfigPickleDict.config_dir, config_name + '.pickle')
+		
+		if not os.path.isfile(self._config_path):
+			with open(self._config_path, 'w') as fh:
+				pickle.dump({}, fh)
+
+		with open(self._config_path) as fh:
+			pkl = pickle.load(fh)
+			self.update(pkl)
+
+
+	def __getitem__(self, key):
+		if key not in self:
+			raise ConfigKeyError(self, key)
+		return dict.__getitem__(self, key)
 
 
 	def __setitem__(self, key, val):
-
 		dict.__setitem__(self, key, val)
-		with open(self._filepath, 'w') as fh:
-			for key, value in self.items():
-				fh.write('{0}={1}\n'.format(key, value))
-
-
-
-cd = ConfigDict('config.txt')
-
-if len(sys.argv) == 3:
-
-    key = sys.argv[1]
-    value = sys.argv[2]
-    print('writing data:  {0}, {1}'.format(key, value))
-
-    cd[key] = value
-
-else:
-
-    print('reading data')
-    for key in cd.keys():
-        print('   {0} = {1}'.format(key, cd[key]))
-
-
-
-
-
+		with open(self._config_path, 'w') as fh:
+			pickle.dump(self, fh)
